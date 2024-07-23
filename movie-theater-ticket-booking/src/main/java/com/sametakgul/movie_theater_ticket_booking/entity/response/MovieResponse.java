@@ -15,7 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MovieResponse {
-
+    private Integer id;
     private String movieName;
     private Integer duration;
     private Double rating;

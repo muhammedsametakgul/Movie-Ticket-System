@@ -8,6 +8,7 @@ import com.sametakgul.movie_theater_ticket_booking.repository.MovieRepository;
 import com.sametakgul.movie_theater_ticket_booking.entity.request.MovieRequest;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -30,11 +31,18 @@ public class MovieService {
         movieRepository.save(movie);
         return "The movie has been added successfully";
     }
+
     public List<MovieResponse> getAllMovies() {
         List<Movie> movieList = movieRepository.findAll();
         return movieList.stream()
                 .map(MovieMapper::movieToMovieResponse)
                 .collect(Collectors.toList());
+    }
+
+    public MovieResponse getMovieById(Integer movieId) {
+        Optional<Movie> movie = movieRepository.findById(movieId);
+
+        return MovieMapper.movieToMovieResponse(movie.orElse(null));
     }
 
 }

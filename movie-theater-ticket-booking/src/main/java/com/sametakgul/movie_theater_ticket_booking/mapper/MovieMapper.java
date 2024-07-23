@@ -21,6 +21,7 @@ public class MovieMapper {
 
     public static MovieResponse movieToMovieResponse(Movie movie){
         MovieResponse movieResponse = MovieResponse.builder()
+                .id(movie.getId())
                 .movieName(movie.getMovieName())
                 .duration(movie.getDuration())
                 .rating(movie.getRating())

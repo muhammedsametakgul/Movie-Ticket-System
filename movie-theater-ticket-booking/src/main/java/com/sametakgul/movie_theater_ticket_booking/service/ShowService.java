@@ -3,9 +3,11 @@ package com.sametakgul.movie_theater_ticket_booking.service;
 
 import com.sametakgul.movie_theater_ticket_booking.entity.model.*;
 import com.sametakgul.movie_theater_ticket_booking.entity.enums.SeatType;
+import com.sametakgul.movie_theater_ticket_booking.entity.response.ShowResponse;
 import com.sametakgul.movie_theater_ticket_booking.exception.MovieDoesNotExist;
 import com.sametakgul.movie_theater_ticket_booking.exception.ShowDoesNotExist;
 import com.sametakgul.movie_theater_ticket_booking.exception.TheaterDoesNotExist;
+import com.sametakgul.movie_theater_ticket_booking.mapper.MovieMapper;
 import com.sametakgul.movie_theater_ticket_booking.mapper.ShowMapper;
 import com.sametakgul.movie_theater_ticket_booking.repository.MovieRepository;
 import com.sametakgul.movie_theater_ticket_booking.repository.ShowRepository;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ShowService {
@@ -95,5 +98,13 @@ public class ShowService {
         showRepository.save(show);
 
         return "Show seats have been associated successfully";
+    }
+
+    public List<ShowResponse> getAllShows(){
+        List<Show> showList = showRepository.findAll();
+
+        return showList.stream()
+                .map(ShowMapper::showToShowResponse)
+                .collect(Collectors.toList());
     }
 }

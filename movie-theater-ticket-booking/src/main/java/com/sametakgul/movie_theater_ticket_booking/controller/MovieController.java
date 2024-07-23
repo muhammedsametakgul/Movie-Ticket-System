@@ -31,8 +31,13 @@ public class MovieController {
         }
     }
 
-    @GetMapping("/get")
+    @GetMapping("/getMovie")
     public ResponseEntity<List<MovieResponse>> getAllMovies() {
         return  new ResponseEntity<>(movieService.getAllMovies(),HttpStatus.OK);
+    }
+
+    @GetMapping("/getMovie/{movieId}")
+    public ResponseEntity<MovieResponse> getMovieById(@PathVariable int movieId) {
+        return  new ResponseEntity<>(movieService.getMovieById(movieId),HttpStatus.OK);
     }
 }
