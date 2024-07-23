@@ -1,4 +1,4 @@
-package com.sametakgul.movie_theater_ticket_booking.response;
+package com.sametakgul.movie_theater_ticket_booking.entity.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

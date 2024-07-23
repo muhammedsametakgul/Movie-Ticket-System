@@ -1,7 +1,7 @@
 package com.sametakgul.movie_theater_ticket_booking.controller;
 
 
-import com.sametakgul.movie_theater_ticket_booking.request.UserRequest;
+import com.sametakgul.movie_theater_ticket_booking.entity.request.UserRequest;
 import com.sametakgul.movie_theater_ticket_booking.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

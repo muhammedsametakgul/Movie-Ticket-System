@@ -1,11 +1,11 @@
 package com.sametakgul.movie_theater_ticket_booking.service;
 
 
-import com.sametakgul.movie_theater_ticket_booking.entity.User;
+import com.sametakgul.movie_theater_ticket_booking.entity.model.User;
 import com.sametakgul.movie_theater_ticket_booking.exception.UserExists;
 import com.sametakgul.movie_theater_ticket_booking.mapper.UserMapper;
 import com.sametakgul.movie_theater_ticket_booking.repository.UserRepository;
-import com.sametakgul.movie_theater_ticket_booking.request.UserRequest;
+import com.sametakgul.movie_theater_ticket_booking.entity.request.UserRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.sametakgul.movie_theater_ticket_booking.entity;
+package com.sametakgul.movie_theater_ticket_booking.entity.model;
 
 import java.sql.Date;
 import java.sql.Time;

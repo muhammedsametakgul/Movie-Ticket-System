@@ -1,7 +1,7 @@
-package com.sametakgul.movie_theater_ticket_booking.request;
+package com.sametakgul.movie_theater_ticket_booking.entity.request;
 
-import com.sametakgul.movie_theater_ticket_booking.enums.Genre;
-import com.sametakgul.movie_theater_ticket_booking.enums.Language;
+import com.sametakgul.movie_theater_ticket_booking.entity.enums.Genre;
+import com.sametakgul.movie_theater_ticket_booking.entity.enums.Language;
 import lombok.Data;
 
 import java.util.Date;

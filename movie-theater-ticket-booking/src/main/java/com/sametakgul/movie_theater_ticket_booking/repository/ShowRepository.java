@@ -1,6 +1,6 @@
 package com.sametakgul.movie_theater_ticket_booking.repository;
 
-import com.sametakgul.movie_theater_ticket_booking.entity.Show;
+import com.sametakgul.movie_theater_ticket_booking.entity.model.Show;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

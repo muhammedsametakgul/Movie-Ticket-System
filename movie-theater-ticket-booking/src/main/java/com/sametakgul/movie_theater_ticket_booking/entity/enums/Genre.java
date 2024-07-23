@@ -1,4 +1,4 @@
-package com.sametakgul.movie_theater_ticket_booking.enums;
+package com.sametakgul.movie_theater_ticket_booking.entity.enums;
 
 public enum Genre {
     DRAMA,

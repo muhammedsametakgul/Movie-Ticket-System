@@ -1,13 +1,13 @@
 package com.sametakgul.movie_theater_ticket_booking.service;
 
-import com.sametakgul.movie_theater_ticket_booking.entity.Theater;
-import com.sametakgul.movie_theater_ticket_booking.entity.TheaterSeat;
-import com.sametakgul.movie_theater_ticket_booking.enums.SeatType;
+import com.sametakgul.movie_theater_ticket_booking.entity.model.Theater;
+import com.sametakgul.movie_theater_ticket_booking.entity.model.TheaterSeat;
+import com.sametakgul.movie_theater_ticket_booking.entity.enums.SeatType;
 import com.sametakgul.movie_theater_ticket_booking.exception.TheaterAlreadyExists;
 import com.sametakgul.movie_theater_ticket_booking.mapper.TheaterMapper;
 import com.sametakgul.movie_theater_ticket_booking.repository.TheaterRepository;
-import com.sametakgul.movie_theater_ticket_booking.request.TheaterRequest;
-import com.sametakgul.movie_theater_ticket_booking.request.TheaterSeatRequest;
+import com.sametakgul.movie_theater_ticket_booking.entity.request.TheaterRequest;
+import com.sametakgul.movie_theater_ticket_booking.entity.request.TheaterSeatRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

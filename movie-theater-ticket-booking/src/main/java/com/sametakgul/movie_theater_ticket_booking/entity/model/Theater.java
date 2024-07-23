@@ -1,4 +1,4 @@
-package com.sametakgul.movie_theater_ticket_booking.entity;
+package com.sametakgul.movie_theater_ticket_booking.entity.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

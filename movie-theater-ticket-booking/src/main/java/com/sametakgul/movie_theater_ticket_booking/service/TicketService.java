@@ -1,9 +1,9 @@
 package com.sametakgul.movie_theater_ticket_booking.service;
 
-import com.sametakgul.movie_theater_ticket_booking.entity.Show;
-import com.sametakgul.movie_theater_ticket_booking.entity.ShowSeat;
-import com.sametakgul.movie_theater_ticket_booking.entity.Ticket;
-import com.sametakgul.movie_theater_ticket_booking.entity.User;
+import com.sametakgul.movie_theater_ticket_booking.entity.model.Show;
+import com.sametakgul.movie_theater_ticket_booking.entity.model.ShowSeat;
+import com.sametakgul.movie_theater_ticket_booking.entity.model.Ticket;
+import com.sametakgul.movie_theater_ticket_booking.entity.model.User;
 import com.sametakgul.movie_theater_ticket_booking.exception.SeatsNotAvailable;
 import com.sametakgul.movie_theater_ticket_booking.exception.ShowDoesNotExist;
 import com.sametakgul.movie_theater_ticket_booking.exception.UserDoesNotExist;
@@ -11,9 +11,8 @@ import com.sametakgul.movie_theater_ticket_booking.mapper.TicketMapper;
 import com.sametakgul.movie_theater_ticket_booking.repository.ShowRepository;
 import com.sametakgul.movie_theater_ticket_booking.repository.TicketRepository;
 import com.sametakgul.movie_theater_ticket_booking.repository.UserRepository;
-import com.sametakgul.movie_theater_ticket_booking.request.TicketRequest;
-import com.sametakgul.movie_theater_ticket_booking.response.TicketResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.sametakgul.movie_theater_ticket_booking.entity.request.TicketRequest;
+import com.sametakgul.movie_theater_ticket_booking.entity.response.TicketResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

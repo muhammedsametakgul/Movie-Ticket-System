@@ -1,8 +1,8 @@
 package com.sametakgul.movie_theater_ticket_booking.service;
 
 
-import com.sametakgul.movie_theater_ticket_booking.entity.*;
-import com.sametakgul.movie_theater_ticket_booking.enums.SeatType;
+import com.sametakgul.movie_theater_ticket_booking.entity.model.*;
+import com.sametakgul.movie_theater_ticket_booking.entity.enums.SeatType;
 import com.sametakgul.movie_theater_ticket_booking.exception.MovieDoesNotExist;
 import com.sametakgul.movie_theater_ticket_booking.exception.ShowDoesNotExist;
 import com.sametakgul.movie_theater_ticket_booking.exception.TheaterDoesNotExist;
@@ -10,8 +10,8 @@ import com.sametakgul.movie_theater_ticket_booking.mapper.ShowMapper;
 import com.sametakgul.movie_theater_ticket_booking.repository.MovieRepository;
 import com.sametakgul.movie_theater_ticket_booking.repository.ShowRepository;
 import com.sametakgul.movie_theater_ticket_booking.repository.TheaterRepository;
-import com.sametakgul.movie_theater_ticket_booking.request.ShowRequest;
-import com.sametakgul.movie_theater_ticket_booking.request.ShowSeatRequest;
+import com.sametakgul.movie_theater_ticket_booking.entity.request.ShowRequest;
+import com.sametakgul.movie_theater_ticket_booking.entity.request.ShowSeatRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,6 +1,6 @@
-package com.sametakgul.movie_theater_ticket_booking.entity;
+package com.sametakgul.movie_theater_ticket_booking.entity.model;
 
-import com.sametakgul.movie_theater_ticket_booking.enums.SeatType;
+import com.sametakgul.movie_theater_ticket_booking.entity.enums.SeatType;
 import jakarta.persistence.*;
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.sametakgul.movie_theater_ticket_booking.request;
+package com.sametakgul.movie_theater_ticket_booking.entity.request;
 import lombok.Data;
 
 import java.sql.Date;

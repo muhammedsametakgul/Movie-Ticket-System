@@ -1,7 +1,7 @@
 package com.sametakgul.movie_theater_ticket_booking.mapper;
 
-import com.sametakgul.movie_theater_ticket_booking.entity.Movie;
-import com.sametakgul.movie_theater_ticket_booking.request.MovieRequest;
+import com.sametakgul.movie_theater_ticket_booking.entity.model.Movie;
+import com.sametakgul.movie_theater_ticket_booking.entity.request.MovieRequest;
 
 public class MovieMapper {
 
