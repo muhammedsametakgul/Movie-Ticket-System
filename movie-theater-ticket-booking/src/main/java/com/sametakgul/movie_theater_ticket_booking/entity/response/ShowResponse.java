@@ -27,6 +27,6 @@ public class ShowResponse {
     private String movieName;
     private String theaterName;
     private String theaterAddress;
-    private List<ShowSeat> showSeatList = new ArrayList<>();
+    private List<ShowSeatResponse> showSeatList = new ArrayList<>();
     private List<Ticket> ticketList = new ArrayList<>();
 }
