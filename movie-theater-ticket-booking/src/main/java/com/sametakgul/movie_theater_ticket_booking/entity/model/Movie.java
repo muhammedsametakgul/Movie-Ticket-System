@@ -2,16 +2,7 @@ package com.sametakgul.movie_theater_ticket_booking.entity.model;
 
 import com.sametakgul.movie_theater_ticket_booking.entity.enums.Genre;
 import com.sametakgul.movie_theater_ticket_booking.entity.enums.Language;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -49,6 +40,6 @@ public class Movie {
     @Enumerated(value = EnumType.STRING)
     private Language language;
 
-    @OneToMany(mappedBy = "movie",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "movie",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Show> shows = new ArrayList<>();
 }

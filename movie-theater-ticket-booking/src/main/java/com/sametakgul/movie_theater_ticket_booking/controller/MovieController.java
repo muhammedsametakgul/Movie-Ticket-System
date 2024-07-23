@@ -1,14 +1,15 @@
 package com.sametakgul.movie_theater_ticket_booking.controller;
 
 
+import com.sametakgul.movie_theater_ticket_booking.entity.model.Movie;
 import com.sametakgul.movie_theater_ticket_booking.entity.request.MovieRequest;
+import com.sametakgul.movie_theater_ticket_booking.entity.response.MovieResponse;
 import com.sametakgul.movie_theater_ticket_booking.service.MovieService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/movie")
@@ -28,5 +29,10 @@ public class MovieController {
         }catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<List<MovieResponse>> getAllMovies() {
+        return  new ResponseEntity<>(movieService.getAllMovies(),HttpStatus.OK);
     }
 }
