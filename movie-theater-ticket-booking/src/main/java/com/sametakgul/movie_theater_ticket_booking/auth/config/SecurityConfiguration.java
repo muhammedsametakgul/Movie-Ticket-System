@@ -13,7 +13,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -27,8 +26,8 @@ public class SecurityConfiguration {
     private JwtAuthFilter authFilter;
 
     @Bean
-    UserDetailsService userDetailsService() {
-        return new UserInfoUserDetailsService();
+    org.springframework.security.core.userdetails.UserDetailsService userDetailsService() {
+        return new UserDetailsService();
     }
 
     @Bean

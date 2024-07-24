@@ -3,7 +3,7 @@ package com.sametakgul.movie_theater_ticket_booking.auth.filter;
 import java.io.IOException;
 
 import com.sametakgul.movie_theater_ticket_booking.auth.service.JWTService;
-import com.sametakgul.movie_theater_ticket_booking.auth.config.UserInfoUserDetailsService;
+import com.sametakgul.movie_theater_ticket_booking.auth.config.UserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,7 +24,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private JWTService jwtService;
 
     @Autowired
-    private UserInfoUserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
