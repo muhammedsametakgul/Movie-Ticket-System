@@ -1,6 +1,7 @@
 spring:
   application:
     name: movie-ticket-booking-system
+
   liquibase:
     enabled: false
 
@@ -18,3 +19,6 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
         show_sql: true
+
+  secret:
+    key: "404D635166546A576E5A7234753778214125442A472D4B6150645267556B5870"
