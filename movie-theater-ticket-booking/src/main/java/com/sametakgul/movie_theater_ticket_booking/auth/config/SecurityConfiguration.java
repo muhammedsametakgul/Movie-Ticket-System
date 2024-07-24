@@ -27,7 +27,7 @@ public class SecurityConfiguration {
 
     @Bean
     org.springframework.security.core.userdetails.UserDetailsService userDetailsService() {
-        return new UserDetailsService();
+        return new UserInfoUserDetailsService();
     }
 
     @Bean
