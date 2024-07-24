@@ -2,7 +2,7 @@ spring:
   application:
     name: movie-ticket-booking-system
   liquibase:
-    enabled: true
+    enabled: false
 
   datasource:
     url: jdbc:mysql://localhost:3306/movie_ticket_booking

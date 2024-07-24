@@ -6,6 +6,8 @@ import com.sametakgul.movie_theater_ticket_booking.exception.UserExists;
 import com.sametakgul.movie_theater_ticket_booking.mapper.UserMapper;
 import com.sametakgul.movie_theater_ticket_booking.repository.UserRepository;
 import com.sametakgul.movie_theater_ticket_booking.entity.request.UserRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,13 +15,11 @@ import java.util.Optional;
 @Service
 public class UserService {
 
+    @Autowired
+    UserRepository userRepository;
 
-    private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public String addUser(UserRequest userRequest) {
         Optional<User> users = userRepository.findByEmailId(userRequest.getEmailId());
@@ -28,10 +28,9 @@ public class UserService {
             throw new UserExists();
         }
 
-        User user = UserMapper.userDtoToUser(userRequest );
+        User user = UserMapper.userDtoToUser(userRequest,  passwordEncoder.encode("1234"));
 
         userRepository.save(user);
         return "User Saved Successfully";
     }
-
 }
