@@ -1,7 +1,7 @@
-package com.sametakgul.movie_theater_ticket_booking.config;
+package com.sametakgul.movie_theater_ticket_booking.auth.config;
 
-import com.sametakgul.movie_theater_ticket_booking.entity.model.User;
-import com.sametakgul.movie_theater_ticket_booking.repository.UserRepository;
+import com.sametakgul.movie_theater_ticket_booking.auth.entity.model.User;
+import com.sametakgul.movie_theater_ticket_booking.auth.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

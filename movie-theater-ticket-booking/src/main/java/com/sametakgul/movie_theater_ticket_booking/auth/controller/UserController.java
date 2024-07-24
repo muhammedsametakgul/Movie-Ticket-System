@@ -1,10 +1,10 @@
-package com.sametakgul.movie_theater_ticket_booking.controller;
+package com.sametakgul.movie_theater_ticket_booking.auth.controller;
 
 
-import com.sametakgul.movie_theater_ticket_booking.config.JWTService;
+import com.sametakgul.movie_theater_ticket_booking.auth.service.JWTService;
 import com.sametakgul.movie_theater_ticket_booking.entity.request.AuthRequest;
-import com.sametakgul.movie_theater_ticket_booking.entity.request.UserRequest;
-import com.sametakgul.movie_theater_ticket_booking.service.UserService;
+import com.sametakgul.movie_theater_ticket_booking.auth.entity.request.UserRequest;
+import com.sametakgul.movie_theater_ticket_booking.auth.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,4 +1,4 @@
-package com.sametakgul.movie_theater_ticket_booking.config;
+package com.sametakgul.movie_theater_ticket_booking.auth.service;
 
 import java.security.Key;
 import java.util.Date;

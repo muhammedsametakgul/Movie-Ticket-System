@@ -1,8 +1,8 @@
-package com.sametakgul.movie_theater_ticket_booking.mapper;
+package com.sametakgul.movie_theater_ticket_booking.auth.entity.mapper;
 
-import com.sametakgul.movie_theater_ticket_booking.entity.model.User;
-import com.sametakgul.movie_theater_ticket_booking.entity.request.UserRequest;
-import com.sametakgul.movie_theater_ticket_booking.entity.response.UserResponse;
+import com.sametakgul.movie_theater_ticket_booking.auth.entity.model.User;
+import com.sametakgul.movie_theater_ticket_booking.auth.entity.request.UserRequest;
+import com.sametakgul.movie_theater_ticket_booking.auth.entity.response.UserResponse;
 
 public class UserMapper {
 

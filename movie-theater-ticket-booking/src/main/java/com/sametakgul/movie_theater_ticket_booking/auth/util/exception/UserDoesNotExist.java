@@ -1,4 +1,4 @@
-package com.sametakgul.movie_theater_ticket_booking.exception;
+package com.sametakgul.movie_theater_ticket_booking.auth.util.exception;
 
 public class UserDoesNotExist extends RuntimeException{
 

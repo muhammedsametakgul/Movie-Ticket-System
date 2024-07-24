@@ -1,5 +1,6 @@
 package com.sametakgul.movie_theater_ticket_booking.entity.model;
 
+import com.sametakgul.movie_theater_ticket_booking.auth.entity.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

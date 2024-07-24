@@ -1,6 +1,7 @@
-package com.sametakgul.movie_theater_ticket_booking.config;
+package com.sametakgul.movie_theater_ticket_booking.auth.config;
 
 
+import com.sametakgul.movie_theater_ticket_booking.auth.filter.JwtAuthFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

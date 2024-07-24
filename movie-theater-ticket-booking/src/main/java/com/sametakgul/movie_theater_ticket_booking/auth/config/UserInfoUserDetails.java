@@ -1,6 +1,6 @@
-package com.sametakgul.movie_theater_ticket_booking.config;
+package com.sametakgul.movie_theater_ticket_booking.auth.config;
 
-import com.sametakgul.movie_theater_ticket_booking.entity.model.User;
+import com.sametakgul.movie_theater_ticket_booking.auth.entity.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,4 +1,4 @@
-package com.sametakgul.movie_theater_ticket_booking.entity.request;
+package com.sametakgul.movie_theater_ticket_booking.auth.entity.request;
 
 import com.sametakgul.movie_theater_ticket_booking.entity.enums.Gender;
 import lombok.Data;

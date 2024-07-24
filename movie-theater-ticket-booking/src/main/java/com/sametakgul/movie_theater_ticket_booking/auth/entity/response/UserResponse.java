@@ -1,4 +1,4 @@
-package com.sametakgul.movie_theater_ticket_booking.entity.response;
+package com.sametakgul.movie_theater_ticket_booking.auth.entity.response;
 
 
 import com.sametakgul.movie_theater_ticket_booking.entity.enums.Gender;

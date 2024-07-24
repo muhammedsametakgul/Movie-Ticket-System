@@ -1,6 +1,7 @@
-package com.sametakgul.movie_theater_ticket_booking.entity.model;
+package com.sametakgul.movie_theater_ticket_booking.auth.entity.model;
 
 import com.sametakgul.movie_theater_ticket_booking.entity.enums.Gender;
+import com.sametakgul.movie_theater_ticket_booking.entity.model.Ticket;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
