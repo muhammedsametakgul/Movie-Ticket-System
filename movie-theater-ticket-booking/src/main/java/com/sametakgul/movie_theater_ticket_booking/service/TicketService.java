@@ -116,7 +116,7 @@ public class TicketService {
         return sb.toString();
     }
 
-    public byte[] getTicketAsPDF( Show show, Ticket ticket) throws IOException {
+    public byte[] getTicketAsPDF( Show show, Ticket ticket) {
         TicketResponse ticketResponse = TicketMapper.returnTicket(show,ticket);
         return PdfUtils.createTicketPdf(ticketResponse);
     }

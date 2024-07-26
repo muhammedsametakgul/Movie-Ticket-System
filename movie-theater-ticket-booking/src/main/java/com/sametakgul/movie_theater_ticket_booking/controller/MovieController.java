@@ -5,6 +5,7 @@ import com.sametakgul.movie_theater_ticket_booking.entity.model.Movie;
 import com.sametakgul.movie_theater_ticket_booking.entity.request.MovieRequest;
 import com.sametakgul.movie_theater_ticket_booking.entity.response.MovieResponse;
 import com.sametakgul.movie_theater_ticket_booking.service.MovieService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,9 @@ public class MovieController {
     }
 
     @GetMapping("/getMovie/{movieId}")
-    public ResponseEntity<MovieResponse> getMovieById(@PathVariable int movieId) {
-        return  new ResponseEntity<>(movieService.getMovieById(movieId),HttpStatus.OK);
+    @Cacheable(value = "movie", key = "#movieId")
+    public MovieResponse getMovieById(@PathVariable int movieId) {
+        return movieService.getMovieById(movieId);
     }
+
 }
