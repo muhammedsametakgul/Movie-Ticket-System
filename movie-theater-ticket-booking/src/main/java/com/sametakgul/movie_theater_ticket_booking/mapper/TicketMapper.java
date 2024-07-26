@@ -10,10 +10,10 @@ public class TicketMapper {
         TicketResponse ticketResponseDto = TicketResponse.builder()
                 .bookedSeats(ticket.getBookedSeats())
                 .address(show.getTheater().getAddress())
-                .theaterName(show.getTheater().getName())
-                .movieName(show.getMovie().getMovieName())
-                .date(show.getDate())
-                .time(show.getTime())
+                .theaterName(ticket.getShow().getTheater().getName())
+                .movieName(ticket.getShow().getMovie().getMovieName())
+                .date(ticket.getShow().getDate())
+                .time(ticket.getShow().getTime())
                 .totalPrice(ticket.getTotalTicketsPrice())
                 .build();
 
