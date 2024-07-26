@@ -38,7 +38,7 @@ public class SecurityConfiguration {
                                 .requestMatchers("/movie/**").hasAnyAuthority("ROLE_ADMIN")
                                 .requestMatchers("/show/**").hasAnyAuthority("ROLE_ADMIN")
                                 .requestMatchers("/theater/**").hasAnyAuthority("ROLE_ADMIN")
-                                .requestMatchers("/ticket/**").hasAnyAuthority("ROLE_USER")
+                                .requestMatchers("/ticket/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_USER")
                                 .anyRequest().authenticated())
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
