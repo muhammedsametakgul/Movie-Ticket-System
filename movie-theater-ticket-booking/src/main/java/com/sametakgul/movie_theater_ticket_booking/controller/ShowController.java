@@ -6,6 +6,7 @@ import com.sametakgul.movie_theater_ticket_booking.entity.request.ShowRequest;
 import com.sametakgul.movie_theater_ticket_booking.entity.request.ShowSeatRequest;
 import com.sametakgul.movie_theater_ticket_booking.entity.response.ShowResponse;
 import com.sametakgul.movie_theater_ticket_booking.service.ShowService;
+import com.sametakgul.movie_theater_ticket_booking.utils.MovieTicketResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +44,7 @@ public class ShowController {
     }
 
     @GetMapping("/getShows")
-    public ResponseEntity<List<ShowResponse>> getShows() {
-        return  new ResponseEntity<>(showService.getAllShows(),HttpStatus.OK);
+    public MovieTicketResponse<List<ShowResponse>> getShows() {
+        return MovieTicketResponse.success(showService.getAllShows());
     }
 }

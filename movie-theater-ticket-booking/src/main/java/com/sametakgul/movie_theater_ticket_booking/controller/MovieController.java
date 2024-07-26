@@ -5,6 +5,7 @@ import com.sametakgul.movie_theater_ticket_booking.entity.model.Movie;
 import com.sametakgul.movie_theater_ticket_booking.entity.request.MovieRequest;
 import com.sametakgul.movie_theater_ticket_booking.entity.response.MovieResponse;
 import com.sametakgul.movie_theater_ticket_booking.service.MovieService;
+import com.sametakgul.movie_theater_ticket_booking.utils.MovieTicketResponse;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -3,6 +3,7 @@ package com.sametakgul.movie_theater_ticket_booking.controller;
 import com.sametakgul.movie_theater_ticket_booking.entity.request.TheaterRequest;
 import com.sametakgul.movie_theater_ticket_booking.entity.request.TheaterSeatRequest;
 import com.sametakgul.movie_theater_ticket_booking.service.TheaterService;
+import com.sametakgul.movie_theater_ticket_booking.utils.MovieTicketResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,12 +32,12 @@ public class TheaterController {
     }
 
     @PostMapping("/addTheaterSeat")
-    public ResponseEntity<String> addTheaterSeat(@RequestBody TheaterSeatRequest entryDto) {
+    public MovieTicketResponse<TheaterSeatRequest> addTheaterSeat(@RequestBody TheaterSeatRequest entryDto) {
         try {
             String result = theaterService.addTheaterSeat(entryDto);
-            return new ResponseEntity<>(result, HttpStatus.CREATED);
+            return MovieTicketResponse.success(entryDto);
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return MovieTicketResponse.error();
         }
     }
 }
