@@ -1,5 +1,9 @@
 package com.sametakgul.movie_theater_ticket_booking.service;
 
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
 import com.sametakgul.movie_theater_ticket_booking.entity.model.Show;
 import com.sametakgul.movie_theater_ticket_booking.entity.model.ShowSeat;
 import com.sametakgul.movie_theater_ticket_booking.entity.model.Ticket;
@@ -13,8 +17,11 @@ import com.sametakgul.movie_theater_ticket_booking.repository.TicketRepository;
 import com.sametakgul.movie_theater_ticket_booking.auth.repository.UserRepository;
 import com.sametakgul.movie_theater_ticket_booking.entity.request.TicketRequest;
 import com.sametakgul.movie_theater_ticket_booking.entity.response.TicketResponse;
+import com.sametakgul.movie_theater_ticket_booking.utils.PdfUtils;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,9 +29,7 @@ import java.util.Optional;
 public class TicketService {
 
     private final TicketRepository ticketRepository;
-
     private final ShowRepository showRepository;
-
     private final UserRepository userRepository;
 
     public TicketService(TicketRepository ticketRepository, ShowRepository showRepository, UserRepository userRepository) {
@@ -56,7 +61,7 @@ public class TicketService {
         }
 
         // count price
-        Integer getPriceAndAssignSeats = getPriceAndAssignSeats(show.getShowSeatList(),	ticketRequest.getRequestSeats());
+        Integer getPriceAndAssignSeats = getPriceAndAssignSeats(show.getShowSeatList(), ticketRequest.getRequestSeats());
 
         String seats = listToString(ticketRequest.getRequestSeats());
 
@@ -111,4 +116,12 @@ public class TicketService {
         return sb.toString();
     }
 
+    public byte[] getTicketAsPDF( Show show, Ticket ticket) throws IOException {
+        TicketResponse ticketResponse = TicketMapper.returnTicket(show,ticket);
+        return PdfUtils.createTicketPdf(ticketResponse);
+    }
+
+    public Ticket getTicketById(int id){
+        return ticketRepository.findById(id).orElse(null);
+    }
 }
