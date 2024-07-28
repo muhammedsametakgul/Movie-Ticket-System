@@ -4,6 +4,9 @@ import com.sametakgul.movie_theater_ticket_booking.entity.model.Show;
 import com.sametakgul.movie_theater_ticket_booking.entity.model.Ticket;
 import com.sametakgul.movie_theater_ticket_booking.entity.response.TicketResponse;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class TicketMapper {
 
     public static TicketResponse returnTicket(Ticket ticket) {
@@ -18,5 +21,11 @@ public class TicketMapper {
                 .build();
 
         return ticketResponseDto;
+    }
+
+    public static List<TicketResponse> returnTicket(List<Ticket> tickets) {
+        return tickets.stream()
+                .map(TicketMapper::returnTicket)
+                .collect(Collectors.toList());
     }
 }
