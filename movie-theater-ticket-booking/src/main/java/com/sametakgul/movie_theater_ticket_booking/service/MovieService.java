@@ -3,6 +3,7 @@ package com.sametakgul.movie_theater_ticket_booking.service;
 import com.sametakgul.movie_theater_ticket_booking.entity.model.Movie;
 import com.sametakgul.movie_theater_ticket_booking.entity.response.MovieResponse;
 import com.sametakgul.movie_theater_ticket_booking.exception.MovieAlreadyExist;
+import com.sametakgul.movie_theater_ticket_booking.exception.MovieDoesNotExist;
 import com.sametakgul.movie_theater_ticket_booking.mapper.MovieMapper;
 import com.sametakgul.movie_theater_ticket_booking.repository.MovieRepository;
 import com.sametakgul.movie_theater_ticket_booking.entity.request.MovieRequest;
@@ -41,11 +42,13 @@ public class MovieService {
                 .collect(Collectors.toList());
     }
 
-    @Cacheable(value = "movie", key = "#movieId")
+    @Cacheable(value = "movie", key = "#movieId", unless = "#result == null")
     public MovieResponse getMovieById(Integer movieId) {
         Optional<Movie> movie = movieRepository.findById(movieId);
 
-        return MovieMapper.movieToMovieResponse(movie.orElse(null));
+        return movie.map(MovieMapper::movieToMovieResponse).orElse(null);
+
     }
+
 
 }

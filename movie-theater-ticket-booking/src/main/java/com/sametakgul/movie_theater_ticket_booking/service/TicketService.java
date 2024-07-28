@@ -1,9 +1,5 @@
 package com.sametakgul.movie_theater_ticket_booking.service;
 
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Paragraph;
 import com.sametakgul.movie_theater_ticket_booking.entity.model.Show;
 import com.sametakgul.movie_theater_ticket_booking.entity.model.ShowSeat;
 import com.sametakgul.movie_theater_ticket_booking.entity.model.Ticket;
@@ -18,11 +14,9 @@ import com.sametakgul.movie_theater_ticket_booking.auth.repository.UserRepositor
 import com.sametakgul.movie_theater_ticket_booking.entity.request.TicketRequest;
 import com.sametakgul.movie_theater_ticket_booking.entity.response.TicketResponse;
 import com.sametakgul.movie_theater_ticket_booking.utils.PdfUtils;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -79,7 +73,7 @@ public class TicketService {
         userRepository.save(user);
         showRepository.save(show);
 
-        return TicketMapper.returnTicket(show, ticket);
+        return TicketMapper.returnTicket( ticket);
     }
 
     private Boolean isSeatAvailable(List<ShowSeat> showSeatList, List<String> requestSeats) {
@@ -116,13 +110,16 @@ public class TicketService {
 
         return sb.toString();
     }
+    public byte[] getTicketAsPDF(Ticket ticket) {
+        if ( ticket == null) {
+            throw new IllegalArgumentException("Show and Ticket must not be null");
+        }
 
-    public byte[] getTicketAsPDF( Show show, Ticket ticket) {
-        TicketResponse ticketResponse = TicketMapper.returnTicket(show,ticket);
+        TicketResponse ticketResponse = TicketMapper.returnTicket( ticket);
         return PdfUtils.createTicketPdf(ticketResponse);
     }
 
-    @Cacheable(value ="ticket" , key="#id")
+
     public Ticket getTicketById(int id){
         return ticketRepository.findById(id).orElse(null);
     }

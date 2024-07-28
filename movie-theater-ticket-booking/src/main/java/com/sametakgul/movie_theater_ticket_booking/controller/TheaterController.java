@@ -37,7 +37,7 @@ public class TheaterController {
             String result = theaterService.addTheaterSeat(entryDto);
             return MovieTicketResponse.success(entryDto);
         } catch (Exception e) {
-            return MovieTicketResponse.error();
+            return MovieTicketResponse.error("Not Theater seat found");
         }
     }
 }

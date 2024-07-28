@@ -34,13 +34,19 @@ public class MovieController {
     }
 
     @GetMapping("/getMovie")
-    public ResponseEntity<List<MovieResponse>> getAllMovies() {
-        return  new ResponseEntity<>(movieService.getAllMovies(),HttpStatus.OK);
+    public MovieTicketResponse<List<MovieResponse>> getAllMovies() {
+        return  MovieTicketResponse.success(movieService.getAllMovies());
     }
 
     @GetMapping("/getMovie/{movieId}")
-    public MovieResponse getMovieById(@PathVariable int movieId) {
-        return movieService.getMovieById(movieId);
+    public ResponseEntity<MovieTicketResponse<MovieResponse>> getMovieById(@PathVariable int movieId) {
+        MovieResponse movieResponse = movieService.getMovieById(movieId);
+
+        if (movieResponse == null) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(MovieTicketResponse.error("Movie not found"));
+        }
+
+        return ResponseEntity.ok(MovieTicketResponse.success(movieResponse));
     }
 
 }

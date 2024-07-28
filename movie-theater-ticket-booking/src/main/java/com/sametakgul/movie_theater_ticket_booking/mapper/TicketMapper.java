@@ -6,10 +6,10 @@ import com.sametakgul.movie_theater_ticket_booking.entity.response.TicketRespons
 
 public class TicketMapper {
 
-    public static TicketResponse returnTicket(Show show, Ticket ticket) {
+    public static TicketResponse returnTicket(Ticket ticket) {
         TicketResponse ticketResponseDto = TicketResponse.builder()
                 .bookedSeats(ticket.getBookedSeats())
-                .address(show.getTheater().getAddress())
+                .address(ticket.getShow().getTheater().getAddress())
                 .theaterName(ticket.getShow().getTheater().getName())
                 .movieName(ticket.getShow().getMovie().getMovieName())
                 .date(ticket.getShow().getDate())

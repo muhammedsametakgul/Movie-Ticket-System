@@ -101,7 +101,7 @@ public class ShowService {
         return "Show seats have been associated successfully";
     }
 
-    @Cacheable(value = "shows")
+    @Cacheable(value = "shows", unless = "#result == null")
     public List<ShowResponse> getAllShows(){
         List<Show> showList = showRepository.findAll();
 

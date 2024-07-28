@@ -45,6 +45,13 @@ public class ShowController {
 
     @GetMapping("/getShows")
     public MovieTicketResponse<List<ShowResponse>> getShows() {
-        return MovieTicketResponse.success(showService.getAllShows());
+        List<ShowResponse> shows = showService.getAllShows();
+
+        if (shows == null || shows.isEmpty()) {
+            return MovieTicketResponse.error("Not Show Found");
+        }
+
+        return MovieTicketResponse.success(shows);
     }
+
 }

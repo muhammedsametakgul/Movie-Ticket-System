@@ -6,6 +6,7 @@ import com.sametakgul.movie_theater_ticket_booking.entity.model.Ticket;
 import com.sametakgul.movie_theater_ticket_booking.entity.request.TicketRequest;
 import com.sametakgul.movie_theater_ticket_booking.entity.response.TicketResponse;
 import com.sametakgul.movie_theater_ticket_booking.service.TicketService;
+import com.sametakgul.movie_theater_ticket_booking.utils.MovieTicketResponse;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -34,23 +35,37 @@ public class TicketController {
     }
 
     @GetMapping("/{ticketId}/pdf")
-    public ResponseEntity<byte[]> getTicketAsPDF(@PathVariable Integer ticketId) {
+    public ResponseEntity<?> getTicketAsPDF(@PathVariable Integer ticketId) {
         Ticket ticket = ticketService.getTicketById(ticketId);
-        Show show = ticket.getShow();
-        byte[] pdfContent = null;
-        HttpHeaders headers = new HttpHeaders();
-        String ticketFileName = ticket.getUser().getName() + show.getMovie().getMovieName() + ".pdf";
 
-        try{
-             pdfContent = ticketService.getTicketAsPDF(show,ticket);
+        if (ticket == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(MovieTicketResponse.error("Ticket not found"));
+        }
+
+        Show show = ticket.getShow();
+        byte[] pdfContent;
+        HttpHeaders headers = new HttpHeaders();
+        String ticketFileName = ticket.getUser().getName() + "_" + show.getMovie().getMovieName() + ".pdf";
+
+        try {
+            pdfContent = ticketService.getTicketAsPDF( ticket);
+
+            if (pdfContent == null) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body(MovieTicketResponse.error("Error generating PDF"));
+            }
+
             headers.setContentType(MediaType.APPLICATION_PDF);
             headers.setContentDispositionFormData("filename", ticketFileName);
-        }catch (Exception e){
-            System.out.println();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(MovieTicketResponse.error("Error generating PDF"));
         }
 
         return ResponseEntity.ok()
                 .headers(headers)
                 .body(pdfContent);
     }
+
 }
