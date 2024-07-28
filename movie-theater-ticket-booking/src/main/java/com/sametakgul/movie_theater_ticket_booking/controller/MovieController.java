@@ -39,7 +39,6 @@ public class MovieController {
     }
 
     @GetMapping("/getMovie/{movieId}")
-    @Cacheable(value = "movie", key = "#movieId")
     public MovieResponse getMovieById(@PathVariable int movieId) {
         return movieService.getMovieById(movieId);
     }

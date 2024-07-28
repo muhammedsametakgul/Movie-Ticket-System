@@ -6,6 +6,7 @@ import com.sametakgul.movie_theater_ticket_booking.exception.MovieAlreadyExist;
 import com.sametakgul.movie_theater_ticket_booking.mapper.MovieMapper;
 import com.sametakgul.movie_theater_ticket_booking.repository.MovieRepository;
 import com.sametakgul.movie_theater_ticket_booking.entity.request.MovieRequest;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
@@ -32,6 +33,7 @@ public class MovieService {
         return "The movie has been added successfully";
     }
 
+    @Cacheable(value = "movies")
     public List<MovieResponse> getAllMovies() {
         List<Movie> movieList = movieRepository.findAll();
         return movieList.stream()
@@ -39,6 +41,7 @@ public class MovieService {
                 .collect(Collectors.toList());
     }
 
+    @Cacheable(value = "movie", key = "#movieId")
     public MovieResponse getMovieById(Integer movieId) {
         Optional<Movie> movie = movieRepository.findById(movieId);
 

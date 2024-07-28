@@ -14,6 +14,7 @@ import com.sametakgul.movie_theater_ticket_booking.repository.ShowRepository;
 import com.sametakgul.movie_theater_ticket_booking.repository.TheaterRepository;
 import com.sametakgul.movie_theater_ticket_booking.entity.request.ShowRequest;
 import com.sametakgul.movie_theater_ticket_booking.entity.request.ShowSeatRequest;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -100,6 +101,7 @@ public class ShowService {
         return "Show seats have been associated successfully";
     }
 
+    @Cacheable(value = "shows")
     public List<ShowResponse> getAllShows(){
         List<Show> showList = showRepository.findAll();
 

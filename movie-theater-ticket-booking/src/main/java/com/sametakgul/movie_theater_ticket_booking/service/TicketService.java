@@ -18,6 +18,7 @@ import com.sametakgul.movie_theater_ticket_booking.auth.repository.UserRepositor
 import com.sametakgul.movie_theater_ticket_booking.entity.request.TicketRequest;
 import com.sametakgul.movie_theater_ticket_booking.entity.response.TicketResponse;
 import com.sametakgul.movie_theater_ticket_booking.utils.PdfUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
@@ -121,6 +122,7 @@ public class TicketService {
         return PdfUtils.createTicketPdf(ticketResponse);
     }
 
+    @Cacheable(value ="ticket" , key="#id")
     public Ticket getTicketById(int id){
         return ticketRepository.findById(id).orElse(null);
     }
