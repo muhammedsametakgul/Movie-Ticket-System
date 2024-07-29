@@ -4,6 +4,7 @@ import com.sametakgul.movie_theater_ticket_booking.entity.model.Show;
 import com.sametakgul.movie_theater_ticket_booking.entity.model.ShowSeat;
 import com.sametakgul.movie_theater_ticket_booking.entity.model.Ticket;
 import com.sametakgul.movie_theater_ticket_booking.auth.entity.model.User;
+import com.sametakgul.movie_theater_ticket_booking.entity.request.EmailSendRequest;
 import com.sametakgul.movie_theater_ticket_booking.exception.SeatsNotAvailable;
 import com.sametakgul.movie_theater_ticket_booking.exception.ShowDoesNotExist;
 import com.sametakgul.movie_theater_ticket_booking.auth.util.exception.UserDoesNotExist;
@@ -13,6 +14,7 @@ import com.sametakgul.movie_theater_ticket_booking.repository.TicketRepository;
 import com.sametakgul.movie_theater_ticket_booking.auth.repository.UserRepository;
 import com.sametakgul.movie_theater_ticket_booking.entity.request.TicketRequest;
 import com.sametakgul.movie_theater_ticket_booking.entity.response.TicketResponse;
+import com.sametakgul.movie_theater_ticket_booking.utils.EmailQueueSender;
 import com.sametakgul.movie_theater_ticket_booking.utils.PdfUtils;
 import org.springframework.stereotype.Service;
 
@@ -26,11 +28,13 @@ public class TicketService {
     private final TicketRepository ticketRepository;
     private final ShowRepository showRepository;
     private final UserRepository userRepository;
+    private final EmailQueueSender emailQueueSender;
 
-    public TicketService(TicketRepository ticketRepository, ShowRepository showRepository, UserRepository userRepository) {
+    public TicketService(TicketRepository ticketRepository, ShowRepository showRepository, UserRepository userRepository, EmailQueueSender emailQueueSender) {
         this.ticketRepository = ticketRepository;
         this.showRepository = showRepository;
         this.userRepository = userRepository;
+        this.emailQueueSender = emailQueueSender;
     }
 
     public TicketResponse ticketBooking(TicketRequest ticketRequest) {
@@ -73,6 +77,7 @@ public class TicketService {
         userRepository.save(user);
         showRepository.save(show);
 
+        sendEmail(user,ticket);
         return TicketMapper.returnTicket( ticket);
     }
 
@@ -122,5 +127,20 @@ public class TicketService {
 
     public Ticket getTicketById(int id){
         return ticketRepository.findById(id).orElse(null);
+    }
+
+    public void sendEmail(User user, Ticket ticket){
+
+        EmailSendRequest emailSendRequest = EmailSendRequest.builder().
+                email(user.getEmailId())
+                .message(generateMessage(ticket))
+                .build();
+
+        emailQueueSender.sendInfoToEmailQueue(emailSendRequest);
+    }
+
+    private String generateMessage(Ticket ticket){
+        return "Sayın " + ticket.getUser().getName() + " " + ticket.getShow().getMovie().getMovieName()
+                +" isimli film için " + ticket.getBookedSeats()+ "numaralı koltuklarda biletiniz kesilmiştir." + " İyi seyirler!";
     }
 }
