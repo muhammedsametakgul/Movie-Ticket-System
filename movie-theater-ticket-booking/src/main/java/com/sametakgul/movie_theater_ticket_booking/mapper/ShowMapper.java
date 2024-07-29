@@ -23,7 +23,6 @@ public class ShowMapper {
                 .theaterName(show.getTheater().getName())
                 .theaterAddress(show.getTheater().getAddress())
                 .showSeatList(SeatListMapper.showSeatListToShowSeatResponseList(show.getShowSeatList()))
-                .ticketList(show.getTicketList())
                 .build();
 
         return  showResponse;

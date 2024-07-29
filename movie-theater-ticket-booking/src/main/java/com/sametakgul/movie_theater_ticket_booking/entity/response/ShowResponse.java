@@ -1,9 +1,6 @@
 package com.sametakgul.movie_theater_ticket_booking.entity.response;
 
-import com.sametakgul.movie_theater_ticket_booking.entity.model.Movie;
-import com.sametakgul.movie_theater_ticket_booking.entity.model.ShowSeat;
-import com.sametakgul.movie_theater_ticket_booking.entity.model.Theater;
-import com.sametakgul.movie_theater_ticket_booking.entity.model.Ticket;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,5 +25,4 @@ public class ShowResponse {
     private String theaterName;
     private String theaterAddress;
     private List<ShowSeatResponse> showSeatList = new ArrayList<>();
-    private List<Ticket> ticketList = new ArrayList<>();
 }
