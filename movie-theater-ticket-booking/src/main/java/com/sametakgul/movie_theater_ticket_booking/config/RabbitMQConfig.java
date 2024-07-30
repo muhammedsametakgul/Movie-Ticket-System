@@ -11,13 +11,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    public static final String EMAIL_QUEUE = "email_queue";
+    public static final String STATUS_QUEUE = "statusQueue";
+    public static final String EMAIL_QUEUE = "emailQueue";
 
     @Bean
-    public Queue logQueue() {
-        return new Queue(EMAIL_QUEUE, true);
+    public Queue statusQueue() {
+        return new Queue(STATUS_QUEUE, true);
     }
 
+    @Bean
+    public Queue emailQueue() {
+        return new Queue(EMAIL_QUEUE, true);
+    }
 
     @Bean
     public MessageConverter jsonMessageConverter() {

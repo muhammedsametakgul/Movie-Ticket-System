@@ -16,7 +16,7 @@ public class EmailQueueReceiver {
     }
 
     @RabbitListener(queues = RabbitMQConfig.EMAIL_QUEUE)
-    public void receiveLog(EmailSendRequest email) {
+    public void receiveEmailRequest(EmailSendRequest email) {
         emailService.sendEmail(email);
     }
 }

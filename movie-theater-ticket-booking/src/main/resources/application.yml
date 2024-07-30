@@ -37,6 +37,8 @@ spring:
     password: password
     virtual-host: /
     queue:
+      status:
+        name: statusQueue
       email:
         name: emailQueue
 

@@ -1,5 +1,6 @@
 package com.sametakgul.movie_theater_ticket_booking.service;
 
+import com.sametakgul.movie_theater_ticket_booking.config.RabbitMQConfig;
 import com.sametakgul.movie_theater_ticket_booking.entity.model.Show;
 import com.sametakgul.movie_theater_ticket_booking.entity.model.ShowSeat;
 import com.sametakgul.movie_theater_ticket_booking.entity.model.Ticket;
@@ -16,6 +17,8 @@ import com.sametakgul.movie_theater_ticket_booking.entity.request.TicketRequest;
 import com.sametakgul.movie_theater_ticket_booking.entity.response.TicketResponse;
 import com.sametakgul.movie_theater_ticket_booking.utils.EmailQueueSender;
 import com.sametakgul.movie_theater_ticket_booking.utils.PdfUtils;
+import com.sametakgul.movie_theater_ticket_booking.utils.StatusQueueReceiver;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 
 
@@ -28,13 +31,14 @@ public class TicketService {
     private final TicketRepository ticketRepository;
     private final ShowRepository showRepository;
     private final UserRepository userRepository;
-    private final EmailQueueSender emailQueueSender;
+    private final StatusQueueReceiver statusQueueReceiver;
 
-    public TicketService(TicketRepository ticketRepository, ShowRepository showRepository, UserRepository userRepository, EmailQueueSender emailQueueSender) {
+    public TicketService(TicketRepository ticketRepository, ShowRepository showRepository, UserRepository userRepository,StatusQueueReceiver statusQueueReceiver) {
         this.ticketRepository = ticketRepository;
         this.showRepository = showRepository;
         this.userRepository = userRepository;
-        this.emailQueueSender = emailQueueSender;
+        this.statusQueueReceiver = statusQueueReceiver;
+
     }
 
     public TicketResponse ticketBooking(TicketRequest ticketRequest) {
@@ -77,8 +81,10 @@ public class TicketService {
         userRepository.save(user);
         showRepository.save(show);
 
-        sendEmail(user,ticket);
-        return TicketMapper.returnTicket( ticket);
+
+        sendStatus("SUCCESS",ticket);
+
+        return TicketMapper.returnTicket(ticket);
     }
 
     private Boolean isSeatAvailable(List<ShowSeat> showSeatList, List<String> requestSeats) {
@@ -129,18 +135,10 @@ public class TicketService {
         return ticketRepository.findById(id).orElse(null);
     }
 
-    public void sendEmail(User user, Ticket ticket){
+    public void sendStatus(String status, Ticket ticket){
+        statusQueueReceiver.receiveStatus(status, ticket);
 
-        EmailSendRequest emailSendRequest = EmailSendRequest.builder().
-                email(user.getEmailId())
-                .message(generateMessage(ticket))
-                .build();
-
-        emailQueueSender.sendInfoToEmailQueue(emailSendRequest);
     }
 
-    private String generateMessage(Ticket ticket){
-        return "Sayın " + ticket.getUser().getName() + " " + ticket.getShow().getMovie().getMovieName()
-                +" isimli film için " + ticket.getBookedSeats()+ "numaralı koltuklarda biletiniz kesilmiştir." + " İyi seyirler!";
-    }
+
 }
