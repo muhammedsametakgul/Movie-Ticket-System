@@ -17,6 +17,7 @@ The Movie Ticket Booking System is a web application developed using Spring Boot
 - **Email Sender**: For sending email notifications.
 - **PDF Converter**: For generating PDF tickets.
 - **Liquibase**: Database schema management.
+- **Open API**: Documenting the APIs
 
 ## To check redis cache
 For Redis Cache : <br>
