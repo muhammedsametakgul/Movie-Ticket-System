@@ -9,6 +9,7 @@ import com.sametakgul.movie_theater_ticket_booking.entity.request.EmailSendReque
 import com.sametakgul.movie_theater_ticket_booking.exception.SeatsNotAvailable;
 import com.sametakgul.movie_theater_ticket_booking.exception.ShowDoesNotExist;
 import com.sametakgul.movie_theater_ticket_booking.auth.util.exception.UserDoesNotExist;
+import com.sametakgul.movie_theater_ticket_booking.exception.TicketBookingFailedException;
 import com.sametakgul.movie_theater_ticket_booking.mapper.TicketMapper;
 import com.sametakgul.movie_theater_ticket_booking.repository.ShowRepository;
 import com.sametakgul.movie_theater_ticket_booking.repository.TicketRepository;
@@ -74,18 +75,24 @@ public class TicketService {
         ticket.setUser(user);
         ticket.setShow(show);
 
-        ticket = ticketRepository.save(ticket);
+        try {
+            ticket = ticketRepository.save(ticket);
 
-        user.getTicketList().add(ticket);
-        show.getTicketList().add(ticket);
-        userRepository.save(user);
-        showRepository.save(show);
+            user.getTicketList().add(ticket);
+            show.getTicketList().add(ticket);
+            userRepository.save(user);
+            showRepository.save(show);
 
-
-        sendStatus("SUCCESS",ticket);
+            sendStatus("SUCCESS", ticket);
+        } catch (Exception e) {
+            // Handle the exception appropriately
+            // e.g., log the error or rethrow a custom exception
+            throw new TicketBookingFailedException();
+        }
 
         return TicketMapper.returnTicket(ticket);
     }
+
 
     private Boolean isSeatAvailable(List<ShowSeat> showSeatList, List<String> requestSeats) {
         for (ShowSeat showSeat : showSeatList) {
