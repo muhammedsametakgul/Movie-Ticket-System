@@ -8,6 +8,8 @@ The Movie Ticket Booking System is a web application developed using Spring Boot
 
 - **Spring Boot**: Framework for building Java-based applications.
 - **Spring Security**: For securing the application.
+- **JUnit** : A testing framework for Java that supports unit and integration tests, ensuring code correctness.
+- **Mockito** : A mocking framework for creating mock objects in tests, allowing isolated testing of components.
 - **Maven**: Dependency management.
 - **Postman**: For API testing.
 - **Docker**: Containerization of the application.
